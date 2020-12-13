@@ -22,7 +22,7 @@ class Tag(models.Model):
 class Product(models.Model):
     CATEGORY = (
         ('Indoor', 'Indoor'),
-        ('OutDoor', 'Outdoor')
+        ('Outdoor', 'Outdoor')
     )
     name = models.CharField(max_length=64, null=True)
     price = models.FloatField(null=True)
@@ -45,5 +45,3 @@ class Order(models.Model):
     product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=64, null=True, choices=STATUS)
-
-    
