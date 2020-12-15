@@ -1,5 +1,23 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<style>
+    #navbar_custom{
+      background-color: #474b52
+    }
+    .hi-msg{
+    font-size: 17px;
+    color: #fff;
+    margin-right: 20px;
+  }
+    a:visited{
+      color: #fff;
+      text-decoration: none;
+      font-size: 17px;
+    }
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark" id="navbar_custom">
   <img id="crm_logo" src="{% static 'images/crm_logo.png' %}" alt="">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -14,4 +32,6 @@
       </li>
     </ul>
   </div>
+  <span class="hi-msg">Hi, {{request.user}}!</span>
+  <spanclass="hi-msg"><a href="{% url 'accounts:logout' %}">Logout</a></span>
 </nav>

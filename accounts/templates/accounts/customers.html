@@ -42,7 +42,7 @@
   		<div class="card card-body">
   			<form method="GET">
             {{my_filter.form}}
-  		    <button class="btn btn-primary" type="submit">Search</button>
+  		    <button id="custom_btn1" class="btn btn-primary" type="submit">Search</button>
   		  </form>
   		</div>
   	</div>
@@ -70,7 +70,7 @@
               <td>{{order.date_created}}</td>
               <td>{{order.note}}</td>
               <td>{{order.status}}</td>
-              <td><a class="btn btn-sm btn-info" href="{% url 'accounts:update_order' order.id %}">Update</a></td>
+              <td><a id="custom_btn3" class="btn btn-sm btn-info" href="{% url 'accounts:update_order' order.id %}">Update</a></td>
   						<td><a class="btn btn-sm btn-danger" href="{% url 'accounts:delete_order' order.id %}">Delete</a></td>
             </tr>
           {% endfor %}
@@ -78,5 +78,17 @@
   		</div>
   	</div>
   </div>
+
+  <style>
+      #custom_btn1{
+        background-color: #b4b8bf;
+      }
+  		#custom_btn2{
+  			background-color: #b4b8bf;
+  		}
+  		#custom_btn3{
+  			background-color: #388e3c;
+  		}
+  </style>
 
 {% endblock %}
