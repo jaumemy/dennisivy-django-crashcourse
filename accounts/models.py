@@ -9,6 +9,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=64, null=True)
     phone = models.CharField(max_length=64, null=True)
     email = models.CharField(max_length=64, null=True)
+    adress = models.CharField(max_length=64, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
@@ -20,12 +21,19 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class Seller(models.Model):
+    name = models.CharField(max_length=64)
+    rating = models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     CATEGORY = (
         ('Indoor', 'Indoor'),
         ('Outdoor', 'Outdoor')
     )
+    seller = models.ForeignKey(Seller, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, null=True)
     price = models.FloatField(null=True)
     category = models.CharField(max_length=64, null=True, choices=CATEGORY)
@@ -48,6 +56,7 @@ class Order(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=64, null=True, choices=STATUS)
     note = models.CharField(max_length=1000, null=True)
+    seller = models.ManyToManyField(Seller)
 
     def __str__(self):
         return self.product.name

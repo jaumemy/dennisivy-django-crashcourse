@@ -23,6 +23,7 @@
   			<hr>
   			<p>Email:{{customer.email}}</p>
   			<p>Phone:{{customer.phone}}</p>
+        <p>Adress:{{customer.adress}}</p>
   		</div>
   	</div>
 
@@ -57,6 +58,7 @@
   				<tr>
   					<th>Product</th>
   					<th>Category</th>
+            <td>Seller</td>
   					<th>Date Orderd</th>
             <th>Note</th>
   					<th>Status</th>
@@ -67,6 +69,7 @@
             <tr>
               <td>{{order.product}}</td>
               <td>{{order.product.category}}</td>
+              <td>{{order.product.seller}} : <i class="fa fa-star" aria-hidden="true"> {{order.product.seller.rating}}</i></td>
               <td>{{order.date_created}}</td>
               <td>{{order.note}}</td>
               <td>{{order.status}}</td>

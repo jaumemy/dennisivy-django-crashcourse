@@ -124,9 +124,9 @@ def customers(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['customer'])
+@allowed_users(allowed_roles=['customer','admin'])
 def create_order(request, pk):
-	order_form_set = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=4 )
+	order_form_set = inlineformset_factory(Customer, Order, fields=('product', 'status', 'seller'), extra=4 )
 	customer = Customer.objects.get(id=pk)
 	formset = order_form_set(queryset=Order.objects.none(),instance=customer)
 	#form = OrderForm(initial={'customer':customer})
