@@ -22,7 +22,7 @@ def allowed_users(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(request, *args, **kwargs)
             else:
-                return HttpResponse('You are not allowed to view this page. Admin account needed.')
+                return HttpResponse('You are not allowed to view this page. Need a higher role account.')
 
         return wrapper_func
     return decorator
