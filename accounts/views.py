@@ -7,53 +7,62 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .decorators import unauthenticated_user, allowed_users
+from django.contrib.auth.models import Group
 
 # Create your views here.
 
-def register_page(request):
-    if request.user.is_authenticated:
-        return redirect('accounts:home')
-    else:
-        form = create_user_form()
-        if request.method == "POST":
-            form = create_user_form(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request,'Account created succesfully for '+user)
 
-                return redirect('accounts:login')
+@unauthenticated_user
+def register_page(request):
+
+    form = create_user_form()
+    if request.method == "POST":
+        form = create_user_form(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+
+            group = Group.objects.get(name='customer')
+            user.groups.add(group)
+
+            messages.success(request,'Account created succesfully for '+username)
+
+            return redirect('accounts:login')
 
 
     context = {'form':form}
 
     return render(request, 'accounts/register.html', context)
 
+
+@unauthenticated_user
 def login_page(request):
-    if request.user.is_authenticated:
-        return redirect('accounts:home')
-    else:
-        if request.method == "POST":
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('accounts:home')
-            else:
-                messages.info(request, 'Username or Password incorrect')
 
-        context = {}
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('accounts:home')
+        else:
+            messages.info(request, 'Username or Password incorrect')
 
-        return render(request, 'accounts/login.html', context)
+    context = {}
+
+    return render(request, 'accounts/login.html', context)
+
 
 def logout_user(request):
     logout(request)
 
     return redirect('accounts:home')
 
+
 def index(request):
     return render(request,"index.html")
+
 
 def home(request):
     orders = Order.objects.all()
@@ -69,10 +78,17 @@ def home(request):
 
     return render(request, 'accounts/dashboard.html', context)
 
+
+def user_page(request):
+    context = {}
+    return render(request, 'accounts/user.html', context)
+
+
 def products(request):
     products = Product.objects.all()
 
     return render(request, 'accounts/products.html',{'products':products})
+
 
 @login_required(login_url="accounts:login")
 def customers(request, pk):
@@ -88,6 +104,7 @@ def customers(request, pk):
                'my_filter':my_filter}
 
     return render(request, 'accounts/customers.html', context)
+
 
 @login_required(login_url="accounts:login")
 def create_order(request, pk):
@@ -107,7 +124,9 @@ def create_order(request, pk):
 
     return render(request, 'accounts/order_form.html', context)
 
+
 @login_required(login_url="accounts:login")
+@allowed_users(allowed_roles=['admin'])
 def update_order(request, pk):
     order = Order.objects.get(id=pk)
     form = order_form(instance=order)
@@ -122,7 +141,9 @@ def update_order(request, pk):
 
     return render(request, 'accounts/order_form.html', context)
 
+
 @login_required(login_url="accounts:login")
+@allowed_users(allowed_roles=['admin'])
 def delete_order(request, pk):
     order = Order.objects.get(id=pk)
     if request.method == "POST":
