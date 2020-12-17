@@ -25,6 +25,10 @@ def register_page(request):
 
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            Customer.objects.create(
+                user = user,
+                name = user.username
+            )
 
             messages.success(request,'Account created succesfully for '+username)
 
@@ -79,9 +83,22 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 
+@login_required(login_url='accounts:login')
+@allowed_users(allowed_roles=['customer','admin'])
 def user_page(request):
-    context = {}
-    return render(request, 'accounts/user.html', context)
+	orders = request.user.customer.order_set.all()
+
+	total_orders = orders.count()
+	delivered = orders.filter(status='Delivered').count()
+	pending = orders.filter(status='Pending').count()
+
+	print('ORDERS:', orders)
+
+	context = {'orders':orders, 'total_orders':total_orders,
+	'delivered':delivered,'pending':pending}
+	return render(request, 'accounts/user.html', context)
+
+
 
 
 def products(request):
@@ -106,23 +123,23 @@ def customers(request, pk):
     return render(request, 'accounts/customers.html', context)
 
 
-@login_required(login_url="accounts:login")
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
 def create_order(request, pk):
-    order_form_set = inlineformset_factory(Customer, Order,
-        fields=("product","status"), extra=5)
-    customer = Customer.objects.get(id=pk)
-    formset = order_form_set(queryset=Order.objects.none(), instance=customer)
-    # form = OrderForm(initial={'customer':customer})
-    if request.method =='POST':
-        # print('Printing POST:', request.POST)
-        # form = OrderForm(request.POST)
-        if formset.is_valid():
-            formset.save()
-            return redirect('/')
+	order_form_set = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=4 )
+	customer = Customer.objects.get(id=pk)
+	formset = order_form_set(queryset=Order.objects.none(),instance=customer)
+	#form = OrderForm(initial={'customer':customer})
+	if request.method == 'POST':
+		#print('Printing POST:', request.POST)
+		form = order_form(request.POST)
+		formset = order_form_set(request.POST, instance=customer)
+		if formset.is_valid():
+			formset.save()
+			return redirect('/')
 
-    context={'formset':formset}
-
-    return render(request, 'accounts/order_form.html', context)
+	context = {'formset':formset}
+	return render(request, 'accounts/order_form.html', context)
 
 
 @login_required(login_url="accounts:login")
