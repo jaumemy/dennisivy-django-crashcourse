@@ -33,5 +33,10 @@
     </ul>
   </div>
   <span class="hi-msg">Hi, {{request.user}}!</span>
-  <spanclass="hi-msg"><a href="{% url 'accounts:logout' %}">Logout</a></span>
+  {% if request.user.is_authenticated %}
+    <spanclass="hi-msg"><a href="{% url 'accounts:logout' %}">Logout</a></span>
+  {% else %}
+  <spanclass="hi-msg"><a href="{% url 'accounts:login' %}">Login</a></span>
+
+  {% endif %}
 </nav>
