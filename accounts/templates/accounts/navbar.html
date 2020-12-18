@@ -34,6 +34,7 @@
   </div>
   {% if request.user.is_authenticated %}
     <span class="hi-msg">Hi, <a href="{% url 'accounts:user_page' %}">{{request.user}}!</a></span>
+    <span class="hi-msg"><a href="{% url 'accounts:account_settings' %}">Settings</a></span>
     <spanclass="hi-msg"><a href="{% url 'accounts:logout' %}">Logout</a></span>
   {% else %}
   <spanclass="hi-msg"><a href="{% url 'accounts:login' %}">Login</a></span>
