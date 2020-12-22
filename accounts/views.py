@@ -24,12 +24,6 @@ def register_page(request):
             username = form.cleaned_data.get('username')
 
 
-
-            Customer.objects.create(
-                user = user,
-                name = user.username
-            )
-
             messages.success(request,'Account created succesfully for '+username)
 
             return redirect('accounts:login')
