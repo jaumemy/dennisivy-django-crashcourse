@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'crm1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER':'jaumemysql',
+        'PASSWORD':'aws!5432',
+        'HOST':'database-1.cosg7pw1kgfe.us-east-2.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
 
@@ -131,6 +142,10 @@ MEDIA_ROOT = Path.joinpath(BASE_DIR, 'static/images')
 
 
 #SMTP Configuration
+
+# This gmail account is only for mailing testing purposes. I have absolutely no real
+# info in it whatsoever.
+# Please be kind and don't steal it :)
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
