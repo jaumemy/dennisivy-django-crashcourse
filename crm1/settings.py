@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+
     'django_filters',
+
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -75,23 +78,23 @@ WSGI_APPLICATION = 'crm1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'demo_1',
-        'USER':'jaumemysql',
-        'PASSWORD':'aws!5432',
-        'HOST':'database-1.cosg7pw1kgfe.us-east-2.rds.amazonaws.com',
-        'PORT':'5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'demo_1',
+#         'USER':'jaumemysql',
+#         'PASSWORD':'aws!5432',
+#         'HOST':'database-1.cosg7pw1kgfe.us-east-2.rds.amazonaws.com',
+#         'PORT':'5432'
+#     }
+# }
 
 
 # Password validation
@@ -130,12 +133,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+# STATIC_URL = 'https://crm1bucket.s3.us-east-2.amazonaws.com/'
 
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
-    Path.joinpath(BASE_DIR,"static"),
+    BASE_DIR / 'static'
 ]
 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'static/images')
@@ -153,3 +157,33 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'django.test.mail.yeah2@gmail.com'
 EMAIL_HOST_PASSWORD = '{%Django2020%}'
+
+
+# Same thing here. Be kind :) This is only for testing purposes.
+
+AWS_ACCESS_KEY_ID = 'AKIAU3K2YW3YKVU4A7OT'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'crm1bucket'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_DEFAULT_ACL = 'public-read'
+
+AWS_LOCATION = 'static'
+
+AWS_S3_HOST = "s3.us-east-2.amazonaws.com"
+AWS_S3_REGION_NAME = "us-east-2"
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+
+
+
+
+#####
