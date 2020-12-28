@@ -161,24 +161,24 @@ EMAIL_HOST_PASSWORD = '{%Django2020%}'
 
 # Same thing here. Be kind :) This is only for testing purposes.
 
-AWS_ACCESS_KEY_ID = 'AKIAU3K2YW3YKVU4A7OT'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'crm1bucket'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-AWS_DEFAULT_ACL = 'public-read'
-
-AWS_LOCATION = 'static'
-
-AWS_S3_HOST = "s3.us-east-2.amazonaws.com"
-AWS_S3_REGION_NAME = "us-east-2"
-
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = '****'
+# AWS_SECRET_ACCESS_KEY = '****'
+# AWS_STORAGE_BUCKET_NAME = '****'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# AWS_DEFAULT_ACL = 'public-read'
+#
+# AWS_LOCATION = 'static'
+#
+# AWS_S3_HOST = "s3.us-east-2.amazonaws.com"
+# AWS_S3_REGION_NAME = "us-east-2"
+#
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+#
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
