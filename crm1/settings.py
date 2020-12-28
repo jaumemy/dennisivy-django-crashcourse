@@ -133,8 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATIC_URL = 'https://crm1bucket.s3.us-east-2.amazonaws.com/'
+STATIC_URL = '/static/'
 
 MEDIA_URL = '/images/'
 
