@@ -25,7 +25,8 @@ SECRET_KEY = '8o+fh)y94m^)&59$ykz0ho@l(=$=3vhg1h-iuss&oc0c9&!6zf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['crm1app.herokuapp.com','127.0.0.1']
+
 
 
 # Application definition
@@ -43,6 +44,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -75,23 +79,23 @@ WSGI_APPLICATION = 'crm1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'demo_1',
-        'USER':'jaumemysql',
-        'PASSWORD':'aws!5432',
-        'HOST':'database-1.cosg7pw1kgfe.us-east-2.rds.amazonaws.com',
-        'PORT':'5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'demo_1',
+#         'USER':'jaumemysql',
+#         'PASSWORD':'aws!5432',
+#         'HOST':'database-1.cosg7pw1kgfe.us-east-2.rds.amazonaws.com',
+#         'PORT':'5432'
+#     }
+# }
 
 
 # Password validation
@@ -129,6 +133,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+
+STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
