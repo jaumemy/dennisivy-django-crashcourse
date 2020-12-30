@@ -20,3 +20,4 @@ I built this **Customer Relationship Management** web app, or CRM, using Django 
 
  ### Bugs
  After messing with postgreSQL, S3 Buckets and deploying i started having some bugs with showing profile pics, and decided to keep ok working other projects, keep learning and come back after a while to solve these more efficiently.
+ Due to this and some SQL issues I decided to **deploy** branch **"Part-21"** wich was prior to adding them, but you can find all the cod eon later branches.
