@@ -27,15 +27,16 @@ Due to this and some SQL issues I decided to **deploy** branch **"Part-21"** wic
            
 ## Technologies
 
-For this project, I used **Django**, **AWS**, **S3 Buckets** and **PostgreSQL**, among other more basic skills. 
+For this project, I used **Django**, **AWS**, **S3 Buckets** and **PostgreSQL**, among other more basic skills.                  
 I deployed it on [Heroku](https://www.heroku.com/) and made it work in combination with **AWS**.
                
                
                  
 ## Motivation
 
-I was following a Youtube Tutorial, learning so many new things that I tried not to deviate too much from the original.       
-_I was following this videos [Django (3.0) Crash Course Tutorials | Customer Management App](https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO&ab_channel=DennisIvy) by [Dennis Ivy](https://www.youtube.com/c/DennisIvy)._
+I was following a Youtube Tutorial, learning so many new things that I tried not to deviate too much from the original.              
+_This is de playlist of videos [Django (3.0) Crash Course Tutorials | Customer Management App](https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO&ab_channel=DennisIvy),           
+ by [Dennis Ivy](https://www.youtube.com/c/DennisIvy)._
                        
                          
 ## Meta
