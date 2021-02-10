@@ -152,13 +152,11 @@ MEDIA_ROOT = Path.joinpath(BASE_DIR, 'static/images')
 
 #SMTP Configuration
 
-# This gmail account is only for mailing testing purposes. I have absolutely no real
-# info in it whatsoever.
-# Please be kind and don't steal it :)
+# This gmail account is only for mailing testing purposes and the password is only as a variable
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'django.test.mail.yeah2@gmail.com'
-EMAIL_HOST_PASSWORD = '{%Django2020%}'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD','fdfdjfdfj')
