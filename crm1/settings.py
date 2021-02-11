@@ -20,7 +20,7 @@ TEMPLATES_DIR = Path.joinpath(BASE_DIR,"templates")
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8o+fh)y94m^)&59$ykz0ho@l(=$=3vhg1h-iuss&oc0c9&!6zf'
+# SECRET_KEY = '8o+fh)y94m^)&59$ykz0ho@l(=$=3vhg1h-iuss&oc0c9&!6zf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -89,9 +89,9 @@ DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
 #         'NAME': 'demo_1',
-#         'USER':'jaumemysql',
-#         'PASSWORD':'aws!5432',
-#         'HOST':'database-1.cosg7pw1kgfe.us-east-2.rds.amazonaws.com',
+#         'USER':'*****',
+#         'PASSWORD':'****',
+#         'HOST':'******************************+',
 #         'PORT':'5432'
 #     }
 # }
@@ -151,12 +151,12 @@ MEDIA_ROOT = Path.joinpath(BASE_DIR, 'static/images')
 # info in it whatsoever.
 # Please be kind and don't steal it :)
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'django.test.mail.yeah2@gmail.com'
-EMAIL_HOST_PASSWORD = '{%Django2020%}'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'django.test.mail.yeah2@gmail.com'
+# EMAIL_HOST_PASSWORD = '**********'
 
 
 # Same thing here. Be kind :) This is only for testing purposes.
